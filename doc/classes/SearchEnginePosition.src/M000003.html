@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>search_url (SearchEnginePosition)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/search_engine_position.rb, line 44</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">search_url</span>
+    <span class="ruby-keyword kw">case</span> <span class="ruby-constant">SEARCH_ENGINES</span>[<span class="ruby-ivar">@search_engine</span>][<span class="ruby-identifier">:main</span>]
+    <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:google</span>
+      <span class="ruby-node">&quot;http://#{@search_engine}/search?num=100&amp;hl=#{@language}&amp;query=#{@keyword}&quot;</span>
+    <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:yahoo</span>
+      <span class="ruby-node">&quot;http://#{@search_engine}/search?n=100&amp;p=#{@keyword}&amp;vl=#{@language}&quot;</span>
+    <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:msn</span>
+      <span class="ruby-node">&quot;http://#{@search_engine}/results.aspx?q=#{@keyword}&amp;num=50&amp;mkt=#{@language}&amp;setlang=#{@language}&quot;</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>
