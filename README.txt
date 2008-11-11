@@ -1,4 +1,4 @@
-SearchEnginePosition is a simple lib created by Fernando Gomes in order to help Seo Job for Ruby programmers.
+SearchEnginePosition is a simple class created by Fernando Gomes in order to help Seo Job for Ruby programmers.
 Basicly it returns a search engine position of a given website, on a given search engine for the given keywords.
 
 References:

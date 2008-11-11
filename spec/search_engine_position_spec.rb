@@ -32,13 +32,23 @@ describe SearchEnginePosition do
     end
   end
   
+  describe "with a search engine with nil as default language" do
+    %w(www.google.com.bd).each do |search_engine|
+      it "should be ok, like on #{search_engine}, that I don't know what is default language" do
+        @seo = SearchEnginePosition.new("www.orkut.com", "orkut", search_engine)
+        @seo.search_url.should == "http://#{search_engine}/search?num=100&hl=&query=orkut"
+        @seo.position.class.should == Array
+      end
+    end
+  end
+  
   describe "with correct parameters" do
     before(:each) do
-      @seo_position = SearchEnginePosition.new("www.orkut.com", "orkut", "www.google.com", "en")
+      @seo = SearchEnginePosition.new("www.orkut.com", "orkut", "www.google.com", "en")
     end
     
     it "should return a correct search URL" do
-      @seo.search_url == "http://www.google.com/search?num=100&hl=en&query=orkut"
+      @seo.search_url.should == "http://www.google.com/search?num=100&hl=en&query=orkut"
     end
   
     it "should return a Array of positions" do
