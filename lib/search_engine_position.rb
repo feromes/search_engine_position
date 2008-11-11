@@ -10,7 +10,8 @@ class SearchEnginePosition
   require 'hpricot'
   require 'open-uri'
   
-  SEARCH_ENGINES = {"www.google.ad"  => {:default_lang => nil, :main => :google, :country => "Andorra"},
+  SEARCH_ENGINES = {"www.google.com" => {:default_lang => "en", :main => :google, :country => "International"},
+                    "www.google.ad"  => {:default_lang => nil, :main => :google, :country => "Andorra"},
                     "www.google.ae"  => {:default_lang => nil, :main => :google, :country => "الامارات العربية المتحدة	"},
                     "www.google.com.af"  => {:default_lang => nil, :main => :google, :country => "افغانستان"},
                     "www.google.com.ag"  => {:default_lang => nil, :main => :google, :country => "Antigua and Barbuda"},
@@ -188,7 +189,7 @@ class SearchEnginePosition
   def initialize(site, keyword, search_engine = nil, language = nil)
     @site = site 
     @keyword = URI.escape(keyword) 
-    @search_engine = search_engine || "www.google.com"
+    @search_engine = verify_search_engine(search_engine)
     @language = language || SEARCH_ENGINES[@search_engine][:default_lang]
     @page_result = Hpricot(open(search_url))
   end
@@ -216,5 +217,16 @@ class SearchEnginePosition
       "http://#{@search_engine}/results.aspx?q=#{@keyword}&num=50&mkt=#{@language}&setlang=#{@language}"
     end
   end
-
+  
+  private
+  
+    def verify_search_engine(search_engine)
+      if search_engine and SEARCH_ENGINES[search_engine]
+        search_engine
+      elsif search_engine.nil?
+        "www.google.com"
+      else
+        raise ArgumentError
+      end
+    end
 end
