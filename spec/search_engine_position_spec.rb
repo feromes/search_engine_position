@@ -57,3 +57,22 @@ describe SearchEnginePosition do
   end
     
 end
+
+describe "SearchEnginePosition::SEARCH_ENGINES" do
+  
+  SearchEnginePosition::SEARCH_ENGINES.each do |k, v| 
+    it "should have :default_lang for #{k}" do
+      v.key?(:default_lang) == true
+    end
+    it "should have a :main for #{k}" do
+      v.key?(:main) == true
+    end
+    it "should have the :main => :#{v[:main]} defined as key in LANGUAGES" do
+      SearchEnginePosition::LANGUAGES.key?(v[:main]) == true
+    end
+    it "should have de :default_lang => #{v[:default_lang]} set in the LAMGUAGES[:#{v[:main]}]" do
+      SearchEnginePosition::LANGUAGES[v[:main]].key?(v[:default_lang]) == true
+    end
+  end
+    
+end
