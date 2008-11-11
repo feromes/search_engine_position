@@ -22,7 +22,7 @@ describe SearchEnginePosition do
       @seo = SearchEnginePosition.new("www.orkut.com", "orkut", "www.google.com.br")
     end
     it "should assumes a default language as language if there is a default language" do 
-      @seo.search_url.should == "http://www.google.com/search?num=100&hl=pt-BR&query=orkut"
+      @seo.search_url.should == "http://www.google.com.br/search?num=100&hl=pt-BR&query=orkut"
     end
   end
   
