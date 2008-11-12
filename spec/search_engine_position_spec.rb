@@ -70,7 +70,7 @@ describe "SearchEnginePosition::SEARCH_ENGINES" do
     it "should have the :main => :#{v[:main]} defined as key in LANGUAGES" do
       SearchEnginePosition::LANGUAGES.key?(v[:main]) == true
     end
-    it "should have de :default_lang => #{v[:default_lang]} set in the LAMGUAGES[:#{v[:main]}]" do
+    it "should have de :default_lang => #{v[:default_lang]} set in the LANGUAGES[:#{v[:main]}]" do
       SearchEnginePosition::LANGUAGES[v[:main]].key?(v[:default_lang]) == true
     end
   end
